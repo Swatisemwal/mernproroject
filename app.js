@@ -1,35 +1,11 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
+require('./db/connection')
 
 dotenv.config({ path: "./.env" });
 
-const DB = process.env.DATABASE;
-
-// mongoose
-//   .connect(DB, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-//     useFindModify: false,
-//   })
-//   .then(() => {
-//     console.log("connection succesful");
-//   })
-//   .catch((err) => console.log("connection declined"));
-
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(console.log("DB Connected Successfully."))
-  .catch((error) => {
-    console.log("DB connection failed");
-    console.log(error);
-    process.exit(1);
-  });
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send(`welcome home swati`);
@@ -47,6 +23,6 @@ app.get("/signup", (req, res) => {
   res.send(`welcome to signup`);
 });
 
-app.listen(3000, () => {
-  console.log("server is running");
+app.listen(PORT, () => {
+  console.log(`server is running on ${PORT}`);
 });
