@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const DB = process.env.DATABASE;
-
+// const DB = process.env.DATABASE;
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
 
 mongoose
-  .connect(DB, {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

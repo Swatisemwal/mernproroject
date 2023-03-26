@@ -1,15 +1,17 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
-require('./db/connection')
+require("./db/connection");
 
 dotenv.config({ path: "./.env" });
 
 const PORT = process.env.PORT;
 
-app.get("/", (req, res) => {
-  res.send(`welcome home swati`);
-});
+app.use(require("./router/auth"));
+
+// app.get("/", (req, res) => {
+//   res.send(`welcome home swati`);
+// });
 app.get("/about", (req, res) => {
   res.send(`know about swati`);
 });
